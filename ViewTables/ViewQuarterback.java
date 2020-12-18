@@ -88,7 +88,7 @@ public class ViewQuarterback {
                 + "  Completion_Perc: "     + Completion_Perc    
                 + "  Times Sacked: "        + Times_Sacked
                 + "  Fumbles: "             + Fumbles               
-				+ "  Interceptions: "       + Interceptions + "  |||");
+				+ "  Interceptions: "       + Interceptions + "  |||\n");
 			}
 
 			// release resources
