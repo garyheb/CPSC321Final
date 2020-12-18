@@ -52,6 +52,7 @@ public class UpdateTeam {
         if((losses + wins) < 16){
             draws = (16 - (wins + losses));
         } 
+        
         System.out.println("How many Super Bowls has your team won?");
         int sbWins = getInt.getInt();           
 

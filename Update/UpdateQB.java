@@ -36,11 +36,12 @@ public class UpdateQB {
         String Player_Name = scanner.nextLine();
 
         //get season from function
+        System.out.println("For which season?");
         int Season = getSeason.getSeason();        
 
         stmt = con.createStatement();
         String updateStats = updateWhichStats();
-        String q = "UPDATE Quarterback SET Birthday = " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Player_Name = \"" + Player_Name + "\"";
+        String q = "UPDATE Quarterback SET " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Player_Name = \"" + Player_Name + "\"";
         stmt.executeUpdate(q);
 
         //releases resources
@@ -194,7 +195,8 @@ public class UpdateQB {
             }
             
             String Birthday = year + "-" + monthString + "-" + dayString;
-            Update = "Birthday = " + Birthday + ", ";
+            Update = "Birthday = \"" + Birthday + "\", ";
+            System.out.println("Update = " + Update);
             break;
           case 2:
             System.out.print("Please enter the jersey number: ");
@@ -241,17 +243,17 @@ public class UpdateQB {
             Update = "Rushing_TD = " + rushingTDs + ", ";
             break;
           case 10:
-            System.out.print("Please enter the rushing yards: ");
+            System.out.print("Please enter the Completion Percentage: ");
             int completionPerc = getInt.getInt();
             Update = "Completion_Perc = " + completionPerc + ", ";
             break;
           case 11:
-            System.out.print("Please enter the rushing yards: ");
+            System.out.print("Please enter the Passes Attempted: ");
             int passesAttempted = getInt.getInt();
             Update = "Passes_Attempted = " + passesAttempted + ", ";
             break;
           case 12:
-            System.out.print("Please enter the rushing yards: ");
+            System.out.print("Please enter the Passes Completed: ");
             int passesCompleted = getInt.getInt();
             Update = "Passes_Completed = " + passesCompleted + ", ";
             break;
