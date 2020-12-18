@@ -4,11 +4,11 @@ package Functions;
 import java.util.Scanner;
 
 public class getSeason {
-    public static String getSeason(){
+    public static int getSeason(){
         Scanner scanner = new Scanner(System.in);
         
-        String Season = "Null";
-        int    TeamInt   = 0;
+        int    Season  = 0;
+        int    TeamInt = 0;
         String Input = "";
         while(Season == "Null"){
             System.out.println("1:  2011");
@@ -29,42 +29,42 @@ public class getSeason {
         return Season;
     }
 
-    public static String getSeasonString(int Input){
-        String Season = "";
+    public static int getSeasonString(int Input){
+        int Season = 0;
         switch(Input) {
           case 1:
-            Season = "2011";
+            Season = 2011;
             break;
           case 2:
-            Season = "2012";
+            Season = 2012;
             break;
           case 3:
-            Season = "2013";
+            Season = 2013;
             break;
           case 4:
-            Season = "2014";
+            Season = 2014;
             break;
           case 5:
-            Season = "2015";
+            Season = 2015;
             break;
           case 6:
-            Season = "2016";
+            Season = 2016;
             break;
           case 7:
-            Season = "2017";
+            Season = 2017;
             break;
           case 8:
-            Season = "2018";
+            Season = 2018;
             break;
           case 9:
-            Season = "2019";
+            Season = 2019;
             break;
           case 10:
-            Season = "2020";
+            Season = 2020;
             break;
           
           default:
-            Season = "Null";
+            Season = 0;
         }
         
         return Season;

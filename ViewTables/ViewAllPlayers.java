@@ -27,8 +27,7 @@ public class ViewAllPlayers {
 			
             Scanner scanner = new Scanner(System.in);
 
-            String Input  = getSeason.getSeason();
-            int Season = Integer.parseInt(Input);
+            int Season  = getSeason.getSeason();
 
 			// create and execute query
             Statement stmt = con.createStatement();
