@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.Properties;
 import Functions.*;
 
-public class Teams {
-    // View Teams Table
-	public static void ViewTeams(){
+public class ViewHeadCoach {
+    // View Head_Coach Table
+	public static void ViewHeadCoach(){
 		try {
 			//  create  connection
 			Properties prop = new Properties();
@@ -33,23 +33,26 @@ public class Teams {
 
 			// create and execute query
 			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Team WHERE Season = " + Season;
+			String q = "SELECT * FROM Head_Coach WHERE Season = " + Season + " ORDER BY Team_Name";
 			ResultSet rs = stmt.executeQuery(q);
+			
+			// defines the strings that will be used
+			String Coach_Name, Superbowl_Wins, SeasonName, Team_Name;
 
 			// print results
 			while(rs.next()) {
-				String Team_Name   = rs.getString("Team_Name");
-				String SeasonName  = rs.getString("Season");
-				String Wins        = rs.getString("Wins");
-				String Losses      = rs.getString("Losses");
-				String Draws       = rs.getString("Draws");
-				String Superbowl   = rs.getString("Superbowl_Wins");
-				Team_Name          = StringLength.stringLength(Team_Name, 25);
-				Wins               = StringLength.stringLength(Wins, 3);
-				Losses             = StringLength.stringLength(Losses, 3);
-				Draws              = StringLength.stringLength(Draws, 3);
-				Superbowl          = StringLength.stringLength(Superbowl, 3);
-				System.out.println("Team Name: " + Team_Name + " Season: " + SeasonName + "  Wins: " + Wins + "  Losses: " + Losses + "  Superbowl Wins: " + Superbowl);
+				Coach_Name     = rs.getString("Coach_Name");
+				Superbowl_Wins = rs.getString("Superbowl_Wins");
+				SeasonName     = rs.getString("Season");
+                Team_Name      = rs.getString("Team_Name");
+				Coach_Name   = StringLength.stringLength(Coach_Name, 25);
+				Superbowl_Wins = StringLength.stringLength(Superbowl_Wins, 3);
+				Team_Name     = StringLength.stringLength(Team_Name, 25);
+				System.out.println(
+				  "|||      Coach Name: "      + Coach_Name 
+				+ "  Superbowl Wins: "  + Superbowl_Wins 
+				+ "  Season: "          + SeasonName
+				+ "  Team Name : "      + Team_Name  + "  |||");
 			}
 
 			// release resources
@@ -62,3 +65,4 @@ public class Teams {
 		}
 	}
 }
+

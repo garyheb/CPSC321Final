@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.Properties;
 import Functions.*;
 
-public class ViewOffensivePlayers {
-    // View Offensive Players Table
-	public static void ViewOffensivePlayers(){
+public class ViewDefensivePlayers {
+    // View Defensive Players Table
+	public static void ViewDefensivePlayers(){
 		try {
 			//  create  connection
 			Properties prop = new Properties();
@@ -33,11 +33,11 @@ public class ViewOffensivePlayers {
 
 			// create and execute query
 			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Offensive_Player WHERE Season = " + Season + " ORDER BY Team_Name";
+			String q = "SELECT * FROM Defensive_Player WHERE Season = " + Season + " ORDER  BY Team_Name";
 			ResultSet rs = stmt.executeQuery(q);
 			
 			// defines the strings that will be used
-			String Player_Name, Jersey_Number, Birthday, Team_Name, Position, SeasonName, Touchdowns, Passing_Yards, Rushing_Yards, Turnovers;
+			String Player_Name, Jersey_Number, Birthday, Team_Name, Position, SeasonName, Touchdowns, Sacks, Rushing_Yards, Interceptions, Tackles;
 
 			// print results
 			while(rs.next()) {
@@ -47,19 +47,21 @@ public class ViewOffensivePlayers {
 				Team_Name     = rs.getString("Team_Name");				
 				Position      = rs.getString("Position");
 				SeasonName    = rs.getString("Season");
-				Touchdowns    = rs.getString("Touchdowns");
-				Passing_Yards = rs.getString("Passing_Yards");
-				Rushing_Yards = rs.getString("Rushing_Yards");
-				Turnovers     = rs.getString("Rushing_Yards");
+                Touchdowns    = rs.getString("Touchdowns");
+                Rushing_Yards = rs.getString("Rushing_Yards");
+                Sacks         = rs.getString("Sacks");	
+                Interceptions = rs.getString("Interceptions");			
+				Tackles       = rs.getString("Tackles");
 				Player_Name   = StringLength.stringLength(Player_Name, 25);
 				Jersey_Number = StringLength.stringLength(Jersey_Number, 3);
 				Birthday      = StringLength.stringLength(Birthday, 11);
 				Team_Name     = StringLength.stringLength(Team_Name, 25);
-				Position      = StringLength.stringLength(Position, 16);
+                Position      = StringLength.stringLength(Position, 16);
+                Rushing_Yards = StringLength.stringLength(Rushing_Yards, 13);
 				Touchdowns    = StringLength.stringLength(Touchdowns, 13);
-				Passing_Yards = StringLength.stringLength(Passing_Yards, 13);
-				Rushing_Yards = StringLength.stringLength(Rushing_Yards, 13);
-				Turnovers     = StringLength.stringLength(Turnovers, 13);
+				Sacks         = StringLength.stringLength(Sacks, 13);
+				Interceptions = StringLength.stringLength(Interceptions, 13);
+				Tackles       = StringLength.stringLength(Tackles, 13);
 				System.out.println(
 				  "|||      Player_Name: "      + Player_Name 
 				+ "  Jersey Number: "  + Jersey_Number 
@@ -68,9 +70,10 @@ public class ViewOffensivePlayers {
 				+ "  Position: "       + Position 
 				+ "  Season Name: "    + SeasonName 
 				+ "  Touchdowns: "     + Touchdowns 
-				+ "  Passing Yards: "  + Passing_Yards 
-				+ "  Rushing_Yards: "  + Rushing_Yards
-				+ "  Turnovers: " + Turnovers + "  |||");
+				+ "  Sacks: "          + Sacks 
+                + "  Rushing Yards: "  + Rushing_Yards
+                + "  Interceptions: "  + Interceptions
+				+ "  Tackles: " + Tackles + "  |||");
 			}
 
 			// release resources

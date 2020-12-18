@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.sql.*;  
 import java.util.Properties;
 import ViewTables.*;
-import Functions.*;
 
 //java -cp .;C:\Folder\mysql-connector.jar Homework9
 
@@ -226,7 +225,7 @@ class Homework9{
 		System.out.println("4. Delete Records");
 		System.out.println("5. Exit");
 		System.out.print("Enter your choice (1-5):");
-
+        while(!scanner.hasNextLine()){} 
 		Input = scanner.nextLine();
 		int InputInt = Integer.parseInt(Input);
 		execute( InputInt );
@@ -277,12 +276,13 @@ class Homework9{
 	// List Tables to View
 	public static void Option1(){
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. View Teams");
-		System.out.println("2. View Quarterbacks");
-		System.out.println("3. View Offensive Players");
-		System.out.println("4. View Defensive Players");
-		System.out.println("5. View Head Coaches");
-		System.out.println("6. Exit");
+		System.out.println("1. View All Players On a Team");
+		System.out.println("2. View Teams");
+		System.out.println("3. View Quarterbacks");
+		System.out.println("4. View Offensive Players");
+		System.out.println("5. View Defensive Players");
+		System.out.println("6. View Head Coaches");
+		System.out.println("7. Exit");
 		System.out.print("Enter your choice (1-6):");
 		Input = scanner.nextLine();
 		int InputInt = Integer.parseInt(Input);
@@ -292,32 +292,47 @@ class Homework9{
 	//this code determines which option the user has selected from view records and goes to the appropriate function
 	public static void executeOption1(int userInput)
 	{
-		if(userInput == 1)
-		{
-			Teams.ViewTeams();
+		if (userInput == 1){
+			ViewAllPlayers.ViewAllPlayers();
+			System.out.println();
+			mainMenu();
 		}
-
 		else if(userInput == 2)
 		{
-			Option2();
+			Teams.ViewTeams();
+			System.out.println();
+			mainMenu();
 		}
 
 		else if(userInput == 3)
 		{
-			ViewOffensivePlayers.ViewOffensivePlayers();
+			ViewQuarterback.ViewQuarterback();
+			System.out.println();
+			mainMenu();
 		}
 
 		else if(userInput == 4)
 		{
-			Option4();
+			ViewOffensivePlayers.ViewOffensivePlayers();
+			System.out.println();
+			mainMenu();
 		}
 
 		else if(userInput == 5)
 		{
-			Option5();
+			ViewDefensivePlayers.ViewDefensivePlayers();
+			System.out.println();
+			mainMenu();
+		}
+
+		else if(userInput == 6)
+		{
+			ViewHeadCoach.ViewHeadCoach();
+			System.out.println();
+			mainMenu();
 		}
 		
-		else if(userInput == 6)
+		else if(userInput == 7)
 		{
 		    mainMenu();	
 		}
