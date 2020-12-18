@@ -10,7 +10,7 @@ public class getSeason {
         int    Season  = 0;
         int    TeamInt = 0;
         String Input = "";
-        while(Season == "Null"){
+        while(Season == 0){
             System.out.println("1:  2011");
             System.out.println("2:  2012");
             System.out.println("3:  2013");

@@ -33,7 +33,7 @@ public class ViewOffensivePlayers {
 
 			// create and execute query
 			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Offensive_Player WHERE Season = " + Season + " ORDER BY Team_Name";
+			String q = "SELECT * FROM Offensive_Player WHERE Season = " + Season + " ORDER  BY Team_Name";
 			ResultSet rs = stmt.executeQuery(q);
 			
 			// defines the strings that will be used

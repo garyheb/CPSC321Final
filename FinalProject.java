@@ -1,6 +1,9 @@
 //imports
 import java.io.*;
 import java.util.Scanner;
+
+import AddRecords.AddCoach;
+
 import java.sql.*;  
 import java.util.Properties;
 import ViewTables.*;
@@ -10,74 +13,6 @@ import ViewTables.*;
 class Homework9{
 	
 	static String Input;
-
-	//Add country
-	public static void Option2()
-	{
-		try {
-			//  create  connection
-			Properties prop = new Properties();
-			FileInputStream in = new FileInputStream("config.properties");
-			prop.load(in);
-			in.close();
-			
-			// connect to datbase
-			String hst = prop.getProperty("host");
-			String usr = prop.getProperty("user");
-			String pwd = prop.getProperty("password");
-			String dab = "gheberling_DB";
-			String url = "jdbc:mysql://" + hst + "/" + dab;
-			Connection con = DriverManager.getConnection(url, usr, pwd);
-
-			// create and execute query
-			Statement stmt = con.createStatement();
-			String q = "SELECT country_code FROM Country";
-			ResultSet rs = stmt.executeQuery(q);
-			
-			Scanner scanner = new Scanner(System.in);
-			// prompt for country code to input
-			System.out.print("Country code................:");
-			String CountryCode = scanner.nextLine();
-			// prompt for country name to input
-			System.out.print("Country name................:");
-			String CountryName = scanner.nextLine();
-			// prompt for GDP 
-			System.out.print("Country per capita gdp (USD):");
-			String GDP = scanner.nextLine();
-			int    GDPEntered = Integer.parseInt(GDP);
-			//prompt for inflation
-			System.out.print("Country inflation (pct).....:");
-			String inflation = scanner.nextLine();
-			float  inflationEntered = Float.parseFloat(inflation);
-
-			// print results
-			while(rs.next()) {
-				String cntry_code = rs.getString("country_code");
-				if(cntry_code.equals(CountryCode)){
-					System.out.println("That Country Code already exists, returning to the main menu.");
-					// release resources
-					rs.close();
-					stmt.close();
-					con.close();
-					mainMenu();
-				}
-			}
-			
-			// create and execute insert query
-			stmt = con.createStatement();
-			q = "INSERT INTO Country VALUES ('" + CountryCode + "', '" + CountryName + "', " + GDPEntered + ", " + inflationEntered + ");";
-			stmt.executeUpdate(q);
-
-			// release resources
-			rs.close();
-			stmt.close();
-			con.close();
-			}
-		catch(Exception e) {
-			System.out.println(e);
-		}
-		mainMenu();
-	}
 	
 	//Find countries based on gdp and inflation
 	public static void Option3()
@@ -282,11 +217,27 @@ class Homework9{
 		System.out.println("4. View Offensive Players");
 		System.out.println("5. View Defensive Players");
 		System.out.println("6. View Head Coaches");
-		System.out.println("7. Exit");
+		System.out.println("7. Go Back to Main Menu");
 		System.out.print("Enter your choice (1-6):");
 		Input = scanner.nextLine();
 		int InputInt = Integer.parseInt(Input);
 		executeOption1( InputInt );
+	}
+
+	//Add country
+	public static void Option2()
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("1. Add to Teams");
+		System.out.println("2. Add to Quarterbacks");
+		System.out.println("3. Add toew Offensive Players");
+		System.out.println("4. Add to Defensive Players");
+		System.out.println("5. Add to Head Coaches");
+		System.out.println("6. Go Back to Main Menu");
+		System.out.print("Enter your choice (1-6):");
+		Input = scanner.nextLine();
+		int InputInt = Integer.parseInt(Input);
+		executeOption2( InputInt );
 	}
 	
 	//this code determines which option the user has selected from view records and goes to the appropriate function
@@ -333,6 +284,54 @@ class Homework9{
 		}
 		
 		else if(userInput == 7)
+		{
+		    mainMenu();	
+		}
+		
+		else
+		{
+			System.out.println("Error");
+			mainMenu();
+		}
+	}
+
+	//this code determines which option the user has selected from view records and goes to the appropriate function
+	public static void executeOption2(int userInput)
+	{
+		if (userInput == 1){
+			ViewAllPlayers.ViewAllPlayers();
+			System.out.println();
+			mainMenu();
+		}
+		else if(userInput == 2)
+		{
+			Teams.ViewTeams();
+			System.out.println();
+			mainMenu();
+		}
+
+		else if(userInput == 3)
+		{
+			ViewQuarterback.ViewQuarterback();
+			System.out.println();
+			mainMenu();
+		}
+
+		else if(userInput == 4)
+		{
+			ViewOffensivePlayers.ViewOffensivePlayers();
+			System.out.println();
+			mainMenu();
+		}
+
+		else if(userInput == 5)
+		{
+			AddCoach.AddCoach();
+			System.out.println();
+			mainMenu();
+		}
+		
+		else if(userInput == 6)
 		{
 		    mainMenu();	
 		}

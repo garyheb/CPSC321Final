@@ -68,7 +68,7 @@ public class ViewAllPlayers {
 			// release resources
 			rs.close();
 			stmt.close();
-			con.close();
+            con.close();
 		}
 		catch(Exception e) {
 			System.out.println(e);

@@ -25,38 +25,20 @@ public class AddCoach {
 			String url = "jdbc:mysql://" + hst + "/" + dab;
 			Connection con = DriverManager.getConnection(url, usr, pwd);
 			
-			Scanner scanner = new Scanner(System.in);
-			
-			System.out.print("Please enter Season you wish to view:");
-			String Input  = scanner.nextLine();
-			int Season = Integer.parseInt(Input);
-
+            Scanner scanner = new Scanner(System.in);
+            
+            int SeasonName       = getSeason.getSeason();
+            String Team_Name     = getTeam.getTeam();
+            System.out.println("Please enter coach name: ")
+            String Coach_Name    = scanner.nextLine();
+            String Superbowl     = scanner.nextLine();
+            int Superbowl_Wins   = Integer.parseInt(Superbowl);
 			// create and execute query
-			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Head_Coach WHERE Season = " + Season + " ORDER BY Team_Name";
-			ResultSet rs = stmt.executeQuery(q);
-			
-			// defines the strings that will be used
-			String Coach_Name, Superbowl_Wins, SeasonName, Team_Name;
-
-			// print results
-			while(rs.next()) {
-				Coach_Name     = rs.getString("Coach_Name");
-				Superbowl_Wins = rs.getString("Superbowl_Wins");
-				SeasonName     = rs.getString("Season");
-                Team_Name      = rs.getString("Team_Name");
-				Coach_Name   = StringLength.stringLength(Coach_Name, 25);
-				Superbowl_Wins = StringLength.stringLength(Superbowl_Wins, 3);
-				Team_Name     = StringLength.stringLength(Team_Name, 25);
-				System.out.println(
-				  "|||      Coach Name: "      + Coach_Name 
-				+ "  Superbowl Wins: "  + Superbowl_Wins 
-				+ "  Season: "          + SeasonName
-				+ "  Team Name : "      + Team_Name  + "  |||");
-			}
-
-			// release resources
-			rs.close();
+            Statement stmt = con.createStatement();
+            String q = "INSERT INTO Head_Coach VALUES ('" + Coach_Name + "', '" + Superbowl_Wins + "', " + SeasonName + ", " + Team_Name + ");";
+            stmt.executeUpdate(q);
+            
+            //releases resources
 			stmt.close();
 			con.close();
 		}
