@@ -26,9 +26,8 @@ public class ViewAllPlayers {
 			Connection con = DriverManager.getConnection(url, usr, pwd);
 			
             Scanner scanner = new Scanner(System.in);
-            
-            System.out.print("Please select the Season that you wish to view:");
-            String Input  = scanner.nextLine();
+
+            String Input  = getSeason.getSeason();
             int Season = Integer.parseInt(Input);
 
 			// create and execute query
