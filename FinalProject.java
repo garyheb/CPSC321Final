@@ -20,75 +20,6 @@ class Homework9{
 	
 	static String Input;
 	
-
-	
-	//Update country's gdp and inflation
-	public static void Option4()
-	{
-		boolean countryFound = false;
-		try {
-			//  create  connection
-			Properties prop = new Properties();
-			FileInputStream in = new FileInputStream("config.properties");
-			prop.load(in);
-			in.close();
-			
-			// connect to datbase
-			String hst = prop.getProperty("host");
-			String usr = prop.getProperty("user");
-			String pwd = prop.getProperty("password");
-			String dab = "gheberling_DB";
-			String url = "jdbc:mysql://" + hst + "/" + dab;
-			Connection con = DriverManager.getConnection(url, usr, pwd);
-
-			// create and execute query
-			Statement stmt = con.createStatement();
-			String q = "SELECT country_code FROM Country";
-			ResultSet rs = stmt.executeQuery(q);
-			
-			Scanner scanner = new Scanner(System.in);
-			// prompt for country code 
-			System.out.print("Country code................:");
-			String CountryCode = scanner.nextLine();
-			// prompt for GDP 
-			System.out.print("Country per capita gdp (USD):");
-			String GDP = scanner.nextLine();
-			int    GDPEntered = Integer.parseInt(GDP);
-			//prompt for inflation
-			System.out.print("Country inflation (pct).....:");
-			String inflation = scanner.nextLine();
-			float  inflationEntered = Float.parseFloat(inflation);
-
-			// print results
-			while(rs.next()) {
-				String cntry_code = rs.getString("country_code");
-				if(cntry_code.equals(CountryCode)){
-					countryFound = true;
-				}
-			}
-			
-			//perform the update
-			if(countryFound == true){
-				stmt = con.createStatement();
-				q = "UPDATE Country SET gdp = " + GDPEntered + ", inflation = " + inflationEntered + " WHERE country_code = '" + CountryCode + "'";
-				stmt.executeUpdate(q);
-			}
-			else{
-				System.out.println("The country doesn't exist");
-				mainMenu();
-			}
-
-			// release resources
-			rs.close();
-			stmt.close();
-			con.close();
-		}
-		catch(Exception e) {
-			System.out.println(e);
-		}
-		mainMenu();
-	}
-	
 	//this is the main menu for the program
 	public static void mainMenu(){
 		try {
@@ -187,6 +118,20 @@ class Homework9{
 		System.out.print("Enter your choice (1-6):");
 		int passMe = getInt.getInt();
 		executeOption3(passMe);
+	}
+
+	// Delete row from table
+	public static void Option4()
+	{
+        System.out.println("1. Delete Coach");
+		System.out.println("2. Delete Defensive Player");
+		System.out.println("3. Delete Offensive Player");
+		System.out.println("4. Delete Quarterback");
+		System.out.println("5. Exit");
+		System.out.print("Enter your choice (1-5):");
+		int passMe = getInt.getInt();
+		executeOption4(passMe);
+		mainMenu();
 	}
 
 		
@@ -301,6 +246,35 @@ class Homework9{
 
 	// choose table to update
 	public static void executeOption3(int Input)
+	{		
+		switch (Input){
+			case 1:
+				UpdateTeam.UpdateTeam();
+				mainMenu();
+				break;
+			case 2:
+				UpdateQB.UpdateQB();
+				mainMenu();
+				break;
+			case 3:
+				UpdateOffense.UpdateOffense();
+				mainMenu();
+				break;
+			case 4:
+				UpdateDefense.UpdateDefense();
+				mainMenu();
+				break;
+			case 5:
+				UpdateCoach.UpdateCoach();
+				mainMenu();
+				break;
+			default:
+				mainMenu();
+				break;
+	}
+
+	// choose table to delete
+	public static void executeOption4(int Input)
 	{		
 		switch (Input){
 			case 1:
