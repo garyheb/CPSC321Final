@@ -2,7 +2,6 @@ package ViewTables;
 
 //imports
 import java.io.*;
-import java.util.Scanner;
 import java.sql.*;  
 import java.util.Properties;
 import Functions.*;

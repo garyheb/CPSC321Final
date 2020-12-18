@@ -20,6 +20,7 @@ public class getInt {
                 System.out.print("Please enter a number: ");
             }
         }
+        
         return enteredInt;
     }
 }

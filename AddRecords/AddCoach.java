@@ -60,12 +60,10 @@ public class AddCoach {
 
 			// release resources
 			rs.close();
-
-
             
             //releases resources
 			stmt.close();
-			con.close();
+            con.close();
 		}
 		catch(Exception e) {
 			System.out.println(e);

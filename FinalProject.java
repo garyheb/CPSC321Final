@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import AddRecords.AddCoach;
 import Functions.getInt;
+import Update.UpdateTeam;
 
 import java.sql.*;  
 import java.util.Properties;
@@ -15,62 +16,7 @@ class Homework9{
 	
 	static String Input;
 	
-	//Find countries based on gdp and inflation
-	public static void Option3()
-	{
-		try {
-			//  create  connection
-			Properties prop = new Properties();
-			FileInputStream in = new FileInputStream("config.properties");
-			prop.load(in);
-			in.close();
-			
-			// connect to datbase
-			String hst = prop.getProperty("host");
-			String usr = prop.getProperty("user");
-			String pwd = prop.getProperty("password");
-			String dab = "gheberling_DB";
-			String url = "jdbc:mysql://" + hst + "/" + dab;
-			Connection con = DriverManager.getConnection(url, usr, pwd);
-			
-			Scanner scanner = new Scanner(System.in);
-			
-			// prompt for Limit
-			System.out.print("Number of countries to display:");
-			int    LimitEntered = getInt.getInt();
-			// prompt for GDP 
-			System.out.print("Minimum per capita gdp (USD)..:");
-			String GDP = scanner.nextLine();
-			int    GDPEntered = Integer.parseInt(GDP);
-			//prompt for inflation
-			System.out.print("Maximum inflation (pct).......:");
-			String inflation = scanner.nextLine();
-			float  inflationEntered = Float.parseFloat(inflation);
-			
-			// create and execute query
-			Statement stmt = con.createStatement();
-			String q = "SELECT country_code, country_name, gdp, inflation FROM Country WHERE gdp >= " + GDPEntered + " AND inflation <= " + inflationEntered + " ORDER BY gdp DESC, inflation" + " LIMIT " + LimitEntered;
-			ResultSet rs = stmt.executeQuery(q);
 
-			// print results
-			while(rs.next()) {
-				String cntry_name = rs.getString("country_name");
-				String cntry_code = rs.getString("country_code");
-				String gdp        = rs.getString("gdp");
-				       inflation  = rs.getString("inflation");
-				System.out.println(cntry_name + " (" + cntry_code + "), " + gdp + ", " + inflation);
-			}
-
-			// release resources
-			rs.close();
-			stmt.close();
-			con.close();
-		}
-		catch(Exception e) {
-			System.out.println(e);
-		}
-		mainMenu();
-	}
 	
 	//Update country's gdp and inflation
 	public static void Option4()
@@ -231,6 +177,18 @@ class Homework9{
 		int InputInt = getInt.getInt();
 		executeOption2( InputInt );
 	}
+
+	public static void Option3(){
+		System.out.println("1. Update Teams");
+		System.out.println("2. Update Quarterbacks");
+		System.out.println("3. Update Offensive Players");
+		System.out.println("4. Update Defensive Players");
+		System.out.println("5. Update Head Coaches");
+		System.out.println("6. Exit");
+		System.out.print("Enter your choice (1-6):");
+		int passMe = getInt.getInt();
+		executeOption3(passMe);
+	}
 	
 	//this code determines which option the user has selected from view records and goes to the appropriate function
 	public static void executeOption1(int userInput)
@@ -334,6 +292,32 @@ class Homework9{
 			mainMenu();
 		}
 	}
+
+	//Find countries based on gdp and inflation
+	public static void executeOption3(int Input)
+	{		
+		switch (Input){
+			case 1:
+				UpdateTeam.UpdateTeam();
+				mainMenu();
+				break;
+			case 2:
+				//Option4QB();
+				break;
+			case 3:
+				//Option4OP();
+				break;
+			case 4:
+				//Option4DP();
+				break;
+			case 5:
+				//Option4HC();
+				break;
+			default:
+				mainMenu();
+				break;
+	}
+  }
 
 }
 
