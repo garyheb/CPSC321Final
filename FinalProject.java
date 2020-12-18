@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import AddRecords.AddCoach;
 import Functions.getInt;
+import Update.UpdateQB;
 import Update.UpdateTeam;
 
 import java.sql.*;  
@@ -302,7 +303,8 @@ class Homework9{
 				mainMenu();
 				break;
 			case 2:
-				//Option4QB();
+				UpdateQB.UpdateQB();
+				mainMenu();
 				break;
 			case 3:
 				//Option4OP();

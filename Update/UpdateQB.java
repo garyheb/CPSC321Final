@@ -38,43 +38,9 @@ public class UpdateQB {
         //get season from function
         int Season = getSeason.getSeason();        
 
-        
-
-        System.out.println("Please enter the jersey number: ");
-        int jerseyNumber = getInt.getInt();
-        
-        System.out.println("Please enter the passing yards: ");
-        int passingYards = getInt.getInt();
-
-        System.out.println("Please enter the rushing yards: ");
-        int rushingYards = getInt.getInt();
-
-        System.out.println("Please enter the times sacked: ");
-        int timesSacked = getInt.getInt();
-
-        System.out.println("Please enter the number of interceptions: ");
-        int interceptions = getInt.getInt();
-
-        System.out.println("Please enter the number of fumbles: ");
-        int fumbles = getInt.getInt();
-
-        System.out.println("Please enter the number of passing touchdowns: ");
-        int passingTouchdowns = getInt.getInt();
-
-        System.out.println("Please enter the number of rushing touchdowns: ");
-        int rushingTouchdowns = getInt.getInt();
-
-        System.out.println("Please enter the completion percentage: ");
-        int completionPercentage = getInt.getInt();
-
-        System.out.println("Please enter the passes attempted: ");
-        int passesAttempted = getInt.getInt();
-
-        System.out.println("Please enter the passes completed: ");
-        int passesCompleted = getInt.getInt();
-
         stmt = con.createStatement();
-        String q = "UPDATE Quarterback SET Birthday = " + Birthday + ", Losses = " + losses + ", Draws = " + draws + ", Superbowl_Wins = " + sbWins + " WHERE Season = " + season + " AND Team_Name = " + teamName;
+        String updateStats = updateWhichStats();
+        String q = "UPDATE Quarterback SET Birthday = " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Player_Name = \"" + Player_Name + "\"";
         stmt.executeUpdate(q);
 
         //releases resources
@@ -103,7 +69,7 @@ public class UpdateQB {
         boolean stat11 = false;
         boolean stat12 = false;
         System.out.println("Update which stats?");
-        while(doneUpdating = false){
+        while(doneUpdating == false){
             if(stat1 == false){
                 System.out.println("1. Birthday");
             }
@@ -142,8 +108,44 @@ public class UpdateQB {
             }
             System.out.println("13. Done Updating");
             int updateStat = getInt.getInt();
+            if(updateStat == 1){
+                stat1 = true;
+            }
+            if(updateStat == 2){
+                stat2 = true;
+            }
+            if(updateStat == 3){
+                stat3 = true;
+            }
+            if(updateStat == 4){
+                stat4 = true;
+            }
+            if(updateStat == 5){
+                stat5 = true;
+            }
+            if(updateStat == 6){
+                stat6 = true;
+            }
+            if(updateStat == 7){
+                stat7 = true;
+            }
+            if(updateStat == 8){
+                stat8 = true;
+            }
+            if(updateStat == 9){
+                stat9 = true;
+            }
+            if(updateStat == 10){
+                stat10 = true;
+            }
+            if(updateStat == 11){
+                stat11 = true;
+            }
+            if(updateStat == 12){
+                stat12 = true;
+            }
             if(updateStat == 13){
-                return Update;
+                doneUpdating = true;
             }
             else{
                 Update += getStatsToUpdate(updateStat);
@@ -163,7 +165,9 @@ public class UpdateQB {
             String dayString = "";
             System.out.println("Please enter the Birthday of the quarterback: ");
             System.out.print("What year was the quarterback born: ");
-            while(year < 1900 || year > 2020){
+            year = getInt.getInt();
+            if(year < 1900 || year > 2020){
+                System.out.print("Please enter a year between 1900 and 2020: ");
                 year  = getInt.getInt();
             }            
             System.out.print("What month was the quarterback born: ");
@@ -180,7 +184,7 @@ public class UpdateQB {
             System.out.print("What day was the quarterback born: ");
             int day   = getInt.getInt();
             if(day > 31 || day == 0){
-                System.out.print("Please enter a valid month:");
+                System.out.print("Please enter a valid day:");
                 month = getInt.getInt();
             }
             if(day < 10){
@@ -190,7 +194,7 @@ public class UpdateQB {
             }
             
             String Birthday = year + "-" + monthString + "-" + dayString;
-            Update += "Birthday = " + Birthday + ", ";
+            Update = "Birthday = " + Birthday + ", ";
             break;
           case 2:
             System.out.print("Please enter the jersey number: ");
@@ -199,42 +203,64 @@ public class UpdateQB {
               System.out.println("Please enter a jersey number < 100");
               jerseyNumber = getInt.getInt();
             }
-            Update += "Jersey_Number = " + jerseyNumber + ", ";
+            Update = "Jersey_Number = " + jerseyNumber + ", ";
             break;
           case 3:
             System.out.print("Please enter the passing yards: ");
             int passingYards = getInt.getInt();
-            Update += "Passing_Yards = " + passingYards + ", ";
+            Update = "Passing_Yards = " + passingYards + ", ";
             break;
           case 4:
             System.out.print("Please enter the rushing yards: ");
             int rushingYards = getInt.getInt();
-            Update += "Rushing_Yards = " + rushingYards + ", ";
+            Update = "Rushing_Yards = " + rushingYards + ", ";
             break;
           case 5:
-            Season = 2015;
+            System.out.print("Please enter the times sacked: ");
+            int timesSacked = getInt.getInt();
+            Update = "Times_Sacked = " + timesSacked + ", ";
             break;
           case 6:
-            Season = 2016;
+            System.out.print("Please enter the number of interceptions: ");
+            int interceptions = getInt.getInt();
+            Update = "Interceptions = " + interceptions + ", ";
             break;
           case 7:
-            Season = 2017;
+            System.out.print("Please enter the number of fumbles: ");
+            int fumbles = getInt.getInt();
+            Update = "Fumbles = " + fumbles + ", ";
             break;
           case 8:
-            Season = 2018;
+            System.out.print("Please enter the number of passing touchdowns: ");
+            int passingTouchdowns = getInt.getInt();
+            Update = "Passing_TD = " + passingTouchdowns + ", ";
             break;
           case 9:
-            Season = 2019;
+            System.out.print("Please enter the rushing touchdowns: ");
+            int rushingTDs = getInt.getInt();
+            Update = "Rushing_TD = " + rushingTDs + ", ";
             break;
           case 10:
-            Season = 2020;
+            System.out.print("Please enter the rushing yards: ");
+            int completionPerc = getInt.getInt();
+            Update = "Completion_Perc = " + completionPerc + ", ";
+            break;
+          case 11:
+            System.out.print("Please enter the rushing yards: ");
+            int passesAttempted = getInt.getInt();
+            Update = "Passes_Attempted = " + passesAttempted + ", ";
+            break;
+          case 12:
+            System.out.print("Please enter the rushing yards: ");
+            int passesCompleted = getInt.getInt();
+            Update = "Passes_Completed = " + passesCompleted + ", ";
             break;
           
           default:
-            Season = 0;
+            return Update;
         }
         
-        return Season;
+        return Update;
       };
 }
 
