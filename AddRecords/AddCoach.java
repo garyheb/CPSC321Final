@@ -32,8 +32,7 @@ public class AddCoach {
             System.out.print("Please enter coach name: ");
             String Coach_Name    = scanner.nextLine();
             System.out.print("Please enter superbowl wins: ");
-            String Superbowl     = scanner.nextLine();
-            int Superbowl_Wins   = Integer.parseInt(Superbowl);
+            int Superbowl_Wins   = getInt.getInt();
 			// create and execute query
             Statement stmt = con.createStatement();
             String q = "INSERT INTO Head_Coach VALUES ('" + Coach_Name + "', '" + Superbowl_Wins + "', " + SeasonName + ", " + Team_Name + ");";
@@ -42,7 +41,7 @@ public class AddCoach {
 
             q = "SELECT * FROM Head_Coach WHERE Season = " + SeasonName + " ORDER BY Team_Name";
 			ResultSet rs = stmt.executeQuery(q);
-            String Season = "";
+            String Season, Superbowl = "";
 			// print results
 			while(rs.next()) {
 				Coach_Name     = rs.getString("Coach_Name");

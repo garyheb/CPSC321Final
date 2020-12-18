@@ -1,15 +1,10 @@
 package Functions;
 
-//imports
-import java.util.Scanner;
-
 public class getTeam {
     public static String getTeam(){
-        Scanner scanner = new Scanner(System.in);
         
         String Team_Name = "Null";
         int    TeamInt   = 0;
-        String Input = "";
         while(Team_Name == "Null"){
             System.out.println("1:  Arizona Cardinals");
             System.out.println("2:  Atlanta Falcons");
@@ -45,8 +40,7 @@ public class getTeam {
             System.out.println("32: Washington Football Team");           
             
             System.out.print("Please enter the teams number that you wish to view:");
-            Input       = scanner.nextLine();
-            TeamInt     = Integer.parseInt(Input);
+            TeamInt     = getInt.getInt();
             Team_Name   = getTeam_Name(TeamInt);
         }
         return Team_Name;

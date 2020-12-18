@@ -9,14 +9,15 @@ public class getInt {
         int enteredInt = 0;
         Scanner scanner = new Scanner(System.in);
 
-        String Input = scanner.nextLine();
+        String Input = "";
 
         while(intEntered == false){
-
+            Input = scanner.nextLine();
             try{    
                 enteredInt = Integer.parseInt(Input);
+                intEntered = true;
             }catch (NumberFormatException ex) {
-                //handle exception here
+                System.out.print("Please enter a number: ");
             }
         }
         return enteredInt;

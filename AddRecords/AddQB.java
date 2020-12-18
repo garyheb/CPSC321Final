@@ -28,11 +28,10 @@ public class AddQB {
         
         int SeasonName       = getSeason.getSeason();
         String Team_Name     = getTeam.getTeam();
-        System.out.print("Please enter coach name: ");
-        String Coach_Name    = scanner.nextLine();
+        System.out.print("Please enter Player Name: ");
+        String Player_Name    = scanner.nextLine();
         System.out.print("Please enter superbowl wins: ");
-        String Superbowl     = scanner.nextLine();
-        int Superbowl_Wins   = Integer.parseInt(Superbowl);
+        int Superbowl_Wins   = getInt.getInt();
         // create and execute query
         Statement stmt = con.createStatement();
         String q = "INSERT INTO Head_Coach VALUES ('" + Coach_Name + "', '" + Superbowl_Wins + "', " + SeasonName + ", " + Team_Name + ");";

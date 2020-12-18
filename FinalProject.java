@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.Scanner;
 
 import AddRecords.AddCoach;
+import Functions.getInt;
 
 import java.sql.*;  
 import java.util.Properties;
@@ -36,8 +37,7 @@ class Homework9{
 			
 			// prompt for Limit
 			System.out.print("Number of countries to display:");
-			String Limit = scanner.nextLine();
-			int    LimitEntered = Integer.parseInt(Limit);
+			int    LimitEntered = getInt.getInt();
 			// prompt for GDP 
 			System.out.print("Minimum per capita gdp (USD)..:");
 			String GDP = scanner.nextLine();
@@ -152,17 +152,13 @@ class Homework9{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-		boolean running = true;
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("1. View Records");
 		System.out.println("2. Add Records");
 		System.out.println("3. Update Records");
 		System.out.println("4. Delete Records");
 		System.out.println("5. Exit");
 		System.out.print("Enter your choice (1-5):");
-        while(!scanner.hasNextLine()){} 
-		Input = scanner.nextLine();
-		int InputInt = Integer.parseInt(Input);
+		int InputInt = getInt.getInt();
 		execute( InputInt );
 
 	}
@@ -210,7 +206,6 @@ class Homework9{
 
 	// List Tables to View
 	public static void Option1(){
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("1. View All Players On a Team");
 		System.out.println("2. View Teams");
 		System.out.println("3. View Quarterbacks");
@@ -219,24 +214,21 @@ class Homework9{
 		System.out.println("6. View Head Coaches");
 		System.out.println("7. Go Back to Main Menu");
 		System.out.print("Enter your choice (1-6):");
-		Input = scanner.nextLine();
-		int InputInt = Integer.parseInt(Input);
+		int InputInt = getInt.getInt();
 		executeOption1( InputInt );
 	}
 
 	//Add country
 	public static void Option2()
 	{
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("1. Add to Teams");
 		System.out.println("2. Add to Quarterbacks");
-		System.out.println("3. Add toew Offensive Players");
+		System.out.println("3. Add to Offensive Players");
 		System.out.println("4. Add to Defensive Players");
 		System.out.println("5. Add to Head Coaches");
 		System.out.println("6. Go Back to Main Menu");
 		System.out.print("Enter your choice (1-6):");
-		Input = scanner.nextLine();
-		int InputInt = Integer.parseInt(Input);
+		int InputInt = getInt.getInt();
 		executeOption2( InputInt );
 	}
 	

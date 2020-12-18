@@ -24,12 +24,8 @@ public class ViewHeadCoach {
 			String dab = "gheberling_DB";
 			String url = "jdbc:mysql://" + hst + "/" + dab;
 			Connection con = DriverManager.getConnection(url, usr, pwd);
-			
-			Scanner scanner = new Scanner(System.in);
-			
-			System.out.print("Please enter Season you wish to view:");
-			String Input  = scanner.nextLine();
-			int Season = Integer.parseInt(Input);
+
+			int Season = getSeason.getSeason();
 
 			// create and execute query
 			Statement stmt = con.createStatement();

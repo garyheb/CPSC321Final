@@ -24,9 +24,8 @@ public class ViewAllPlayers {
 			String dab = "gheberling_DB";
 			String url = "jdbc:mysql://" + hst + "/" + dab;
 			Connection con = DriverManager.getConnection(url, usr, pwd);
-			
-            Scanner scanner = new Scanner(System.in);
 
+            // get user input here
             int Season  = getSeason.getSeason();
 
 			// create and execute query

@@ -1,15 +1,9 @@
 package Functions;
 
-//imports
-import java.util.Scanner;
-
 public class getSeason {
     public static int getSeason(){
-        Scanner scanner = new Scanner(System.in);
         
         int    Season  = 0;
-        int    TeamInt = 0;
-        String Input = "";
         while(Season == 0){
             System.out.println("1:  2011");
             System.out.println("2:  2012");
@@ -22,9 +16,8 @@ public class getSeason {
             System.out.println("9:  2019");
             System.out.println("10: 2020");
             System.out.print("Please select the season:");
-            Input       = scanner.nextLine();
-            TeamInt     = Integer.parseInt(Input);
-            Season      = getSeasonString(TeamInt);
+            Season      = getInt.getInt();
+            Season      = getSeasonString(Season);
         }
         return Season;
     }
