@@ -25,36 +25,71 @@ public class AddQB {
         Connection con = DriverManager.getConnection(url, usr, pwd);
         
         Scanner scanner = new Scanner(System.in);
-        
-        int SeasonName       = getSeason.getSeason();
-        String Team_Name     = getTeam.getTeam();
+        System.out.print("Please choose the season:");
+        int SeasonName        = getSeason.getSeason();
+        String season = String.valueOf(SeasonName);
+        String teamName       = getTeam.getTeam();
         System.out.print("Please enter Player Name: ");
         String Player_Name    = scanner.nextLine();
-        System.out.print("Please enter superbowl wins: ");
-        int Superbowl_Wins   = getInt.getInt();
+
+        //get birthday
+        String birthday = getBirthday.getBirthday();   
+        
+        //get jersey number
+        String jerseyNumber = getJerseyNumber.getJerseyNumber();
+        
+        //get passing yards
+        String passingYards = getPassingYards.passingYards();
+
+        //get rushing yards
+        String rushingYards = getRushingYards.rushingYards();
+
+        //get sacks
+        String sacks        = getSacks.sacks();
+
+        //get interceptions
+        String interceptions = getInterceptions.interceptions();
+
+        //get fumbles
+        String fumbles = getFumbles.Fumbles();
+
+        //get passingTD
+        String passingTD = getPassingTD.PassingTD();
+
+        //get rushingTD
+        String rushingTD = getRushingTD.RushingTD();
+
+        //get completion percentage
+        String completionPerc  = getCompletionPerc.CompletionPerc();
+
+        //get passes attempted
+        String passAttempt     = getPassesAttempted.PassesAttempted();
+
+        //get passes completed
+        String passesCompleted = getPassesCompleted.PassesCompleted();
+
+        String position = "Quarterback";
+
         // create and execute query
         Statement stmt = con.createStatement();
-        String q = "INSERT INTO Head_Coach VALUES ('" + Coach_Name + "', '" + Superbowl_Wins + "', " + SeasonName + ", " + Team_Name + ");";
+        String q = "INSERT INTO Quarterback VALUES ('" + Player_Name + "', '" + "\"" + birthday + "\", " + jerseyNumber + ", " + passingYards + ", " + rushingYards + ", " + sacks + ", " + interceptions  + ", " +  fumbles  + ", " +  passingTD  + ", " +  rushingTD  + ", " +  completionPerc  + ", " +  passAttempt  + ", " +  passesCompleted  + ", \"" +  position  + ", \"" + season + ", " + teamName + ");";
         stmt.executeUpdate(q);
 
 
-        q = "SELECT * FROM Head_Coach WHERE Season = " + SeasonName + " ORDER BY Team_Name";
+        q = "SELECT * FROM Quarterback WHERE Season = " + SeasonName + " ORDER BY Team_Name";
         ResultSet rs = stmt.executeQuery(q);
         String Season = "";
         // print results
         while(rs.next()) {
-            Coach_Name     = rs.getString("Coach_Name");
-            Superbowl      = rs.getString("Superbowl_Wins");
+            Player_Name    = rs.getString("Player_Name");
+            jerseyNumber   = rs.getString("Jersey_Number");
             Season         = rs.getString("Season");
-            Team_Name      = rs.getString("Team_Name");
-            Coach_Name     = StringLength.stringLength(Coach_Name, 25);
-            Superbowl      = StringLength.stringLength(Superbowl,   3);
-            Team_Name      = StringLength.stringLength(Team_Name,  25);
+            teamName       = rs.getString("Team_Name");
             System.out.println(
-              "|||      Coach Name: "      + Coach_Name 
-            + "  Superbowl Wins: "  + Superbowl_Wins 
-            + "  Season: "          + SeasonName
-            + "  Team Name : "      + Team_Name  + "  |||");
+              "|||      Player Name: "      + Player_Name
+            + "  Jersey Number: "   + jerseyNumber
+            + "  Season: "          + Season
+            + "  Team Name : "      + teamName  + "  |||");
         }
 
         // release resources

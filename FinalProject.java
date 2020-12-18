@@ -1,22 +1,14 @@
 //imports
-import java.io.*;
-import java.util.Scanner;
-
 import AddRecords.AddCoach;
+import AddRecords.AddQB;
 import Functions.getInt;
-import Update.UpdateCoach;
-import Update.UpdateDefense;
-import Update.UpdateOffense;
-import Update.UpdateQB;
-import Update.UpdateTeam;
-
-import java.sql.*;  
-import java.util.Properties;
+import Update.*;
+import DeleteRecords.*;
 import ViewTables.*;
 
-//java -cp .;C:\Folder\mysql-connector.jar Homework9
+//java -cp .;C:\Folder\mysql-connector.jar FinalProject
 
-class Homework9{
+class FinalProject{
 	
 	static String Input;
 	
@@ -199,28 +191,29 @@ class Homework9{
 	// this code determines which option the user has selected from view records and goes to the appropriate function
 	public static void executeOption2(int userInput)
 	{
+
 		if (userInput == 1){
-			ViewAllPlayers.ViewAllPlayers();
+			//add team
 			System.out.println();
 			mainMenu();
 		}
 		else if(userInput == 2)
 		{
-			Teams.ViewTeams();
+			AddQB.AddPlayer();
 			System.out.println();
 			mainMenu();
 		}
 
 		else if(userInput == 3)
 		{
-			ViewQuarterback.ViewQuarterback();
+			//add offense
 			System.out.println();
 			mainMenu();
 		}
 
 		else if(userInput == 4)
 		{
-			ViewOffensivePlayers.ViewOffensivePlayers();
+			//add defense
 			System.out.println();
 			mainMenu();
 		}
@@ -271,6 +264,7 @@ class Homework9{
 			default:
 				mainMenu();
 				break;
+		}
 	}
 
 	// choose table to delete
@@ -278,23 +272,19 @@ class Homework9{
 	{		
 		switch (Input){
 			case 1:
-				UpdateTeam.UpdateTeam();
+				deleteCoach.deleteCoach();
 				mainMenu();
 				break;
 			case 2:
-				UpdateQB.UpdateQB();
+				deleteDP.deleteDP();
 				mainMenu();
 				break;
 			case 3:
-				UpdateOffense.UpdateOffense();
+				deleteOP.deleteOP();
 				mainMenu();
 				break;
 			case 4:
-				UpdateDefense.UpdateDefense();
-				mainMenu();
-				break;
-			case 5:
-				UpdateCoach.UpdateCoach();
+				deleteQB.deleteQB();
 				mainMenu();
 				break;
 			default:
