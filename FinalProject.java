@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import AddRecords.AddCoach;
 import Functions.getInt;
+import Update.UpdateCoach;
+import Update.UpdateDefense;
+import Update.UpdateOffense;
 import Update.UpdateQB;
 import Update.UpdateTeam;
 
@@ -86,12 +89,6 @@ class Homework9{
 		mainMenu();
 	}
 	
-	//Exit
-	public static void Option5()
-	{
-		System.exit(0);
-	}
-	
 	//this is the main menu for the program
 	public static void mainMenu(){
 		try {
@@ -151,7 +148,7 @@ class Homework9{
 		}
 	}
 
-	// List Tables to View
+	// view tables
 	public static void Option1(){
 		System.out.println("1. View All Players On a Team");
 		System.out.println("2. View Teams");
@@ -165,7 +162,7 @@ class Homework9{
 		executeOption1( InputInt );
 	}
 
-	//Add country
+	// add to tables
 	public static void Option2()
 	{
 		System.out.println("1. Add to Teams");
@@ -178,7 +175,8 @@ class Homework9{
 		int InputInt = getInt.getInt();
 		executeOption2( InputInt );
 	}
-
+	
+	// update tables
 	public static void Option3(){
 		System.out.println("1. Update Teams");
 		System.out.println("2. Update Quarterbacks");
@@ -190,8 +188,15 @@ class Homework9{
 		int passMe = getInt.getInt();
 		executeOption3(passMe);
 	}
+
+		
+	// Exit
+	public static void Option5()
+	{
+		System.exit(0);
+	}
 	
-	//this code determines which option the user has selected from view records and goes to the appropriate function
+	// this code determines which option the user has selected from view records and goes to the appropriate function
 	public static void executeOption1(int userInput)
 	{
 		if (userInput == 1){
@@ -246,7 +251,7 @@ class Homework9{
 		}
 	}
 
-	//this code determines which option the user has selected from view records and goes to the appropriate function
+	// this code determines which option the user has selected from view records and goes to the appropriate function
 	public static void executeOption2(int userInput)
 	{
 		if (userInput == 1){
@@ -294,7 +299,7 @@ class Homework9{
 		}
 	}
 
-	//Find countries based on gdp and inflation
+	// choose table to update
 	public static void executeOption3(int Input)
 	{		
 		switch (Input){
@@ -307,13 +312,16 @@ class Homework9{
 				mainMenu();
 				break;
 			case 3:
-				//Option4OP();
+				UpdateOffense.UpdateOffense();
+				mainMenu();
 				break;
 			case 4:
-				//Option4DP();
+				UpdateDefense.UpdateDefense();
+				mainMenu();
 				break;
 			case 5:
-				//Option4HC();
+				UpdateCoach.UpdateCoach();
+				mainMenu();
 				break;
 			default:
 				mainMenu();

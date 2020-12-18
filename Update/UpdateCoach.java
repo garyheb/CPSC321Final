@@ -32,8 +32,8 @@ public class UpdateCoach {
         Statement stmt = con.createStatement();
         
         // get Team name from function
-        System.out.print("Which Quarterback would you like to update:");
-        String Player_Name = scanner.nextLine();
+        System.out.print("Which Coach would you like to update:");
+        String coachName = scanner.nextLine();
 
         //get season from function
         System.out.println("For which season?");
@@ -41,7 +41,7 @@ public class UpdateCoach {
 
         stmt = con.createStatement();
         String updateStats = updateWhichStats();
-        String q = "UPDATE Quarterback SET Birthday = " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Player_Name = \"" + Player_Name + "\"";
+        String q = "UPDATE Head_Coach SET " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Coach_Name = \"" + coachName + "\"";
         stmt.executeUpdate(q);
 
         //releases resources
@@ -53,4 +53,58 @@ public class UpdateCoach {
 			System.out.println(e);
 		}
     }
+
+  public static String updateWhichStats(){
+    String Update = "";
+    boolean doneUpdating = false;
+    boolean stat1 = false; 
+    boolean stat2 = false;
+    System.out.println("Update which stats?");
+    while(doneUpdating == false){
+        if(stat1 == false){
+            System.out.println("1. Team Name");
+        }
+        if(stat2 == false){
+            System.out.println("2. Superbowl Wins");
+        }        
+        System.out.println("3. Done Updating");
+        int updateStat = getInt.getInt();
+        if(updateStat == 1){
+            stat1 = true;
+        }
+        if(updateStat == 2){
+            stat2 = true;
+        }
+        if(updateStat == 3){
+            doneUpdating = true;
+        }
+        Update += getStatsToUpdate(updateStat);  
+    }
+    return Update;
+  }
+
+  public static String getStatsToUpdate(int Input){
+    Scanner scanner = new Scanner(System.in);
+    String Update = "";
+    int year = 0;
+    switch(Input) {
+      case 1:
+        String teamName = getTeam.getTeam();
+        Update = "Team_Name = " + teamName + ", ";
+        break;
+      case 2:
+        System.out.print("Please enter the number of superbowl wins: ");
+        int superbowlWins = getInt.getInt();
+        if(superbowlWins > 20){
+          System.out.println("Please enter a number of wins that is less than 21");
+          superbowlWins = getInt.getInt();
+        }
+        Update = "Superbowl_Wins = " + superbowlWins + ", ";
+        break;
+      
+      default:
+        return Update;
+    }    
+    return Update;
+  };
 }

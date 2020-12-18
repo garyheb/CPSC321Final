@@ -148,10 +148,7 @@ public class UpdateQB {
             if(updateStat == 13){
                 doneUpdating = true;
             }
-            else{
-                Update += getStatsToUpdate(updateStat);
-            }
-            
+            Update += getStatsToUpdate(updateStat);
         }
         return Update;
     }
