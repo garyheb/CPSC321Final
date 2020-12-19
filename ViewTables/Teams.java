@@ -4,6 +4,8 @@ package ViewTables;
 import java.io.*;
 import java.sql.*;  
 import java.util.Properties;
+
+import Filters.TeamFilter;
 import Functions.*;
 
 public class Teams {
@@ -25,11 +27,12 @@ public class Teams {
 			Connection con = DriverManager.getConnection(url, usr, pwd);
             
             // get user input here
-			int Season = getSeason.getSeason();
-
+			int Season = getSeason.getSeason();            
+            String Filter = TeamFilter.TeamFilter();
+            
 			// create and execute query
 			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Team WHERE Season = " + Season;
+			String q = "SELECT * FROM Team WHERE Season = " + Season + Filter;
 			ResultSet rs = stmt.executeQuery(q);
 
 			// print results

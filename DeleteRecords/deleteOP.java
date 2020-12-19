@@ -31,15 +31,30 @@ public class deleteOP {
         // create and execute query
         Statement stmt = con.createStatement();
         
-        // get Team name from function
-        System.out.print("Which Offensive player would you like to delete:");
-        String Player_Name = scanner.nextLine();
-
         //get season from function
-        int Season = getSeason.getSeason();        
+        int Season = getSeason.getSeason();  
+
+        //list the coaches so the user can decide which to delete
+        System.out.println();
+        System.out.println("--- List of Offensive Players ---");
+        String q = "SELECT * FROM Offensive_Player WHERE Season = " + Season;
+            ResultSet rs = stmt.executeQuery(q);
+            // print results
+            String Player_Name;
+            while(rs.next()) {
+                Player_Name = rs.getString("Player_Name");
+                System.out.println(
+                    "Player Name: " + Player_Name );
+            }
+        
+        // get Team name from function
+        System.out.println();
+        System.out.println();
+        System.out.print("Please type the first and last name of the player you would like to delete:");
+        Player_Name = scanner.nextLine();        
 
         stmt = con.createStatement();
-        String q = "DELETE FROM Offensive_Player WHERE Player_Name = \"" + Player_Name + "\" AND Season = " + Season;
+        q = "DELETE FROM Offensive_Player WHERE Player_Name = \"" + Player_Name + "\" AND Season = " + Season;
         stmt.executeUpdate(q);
 
         //releases resources

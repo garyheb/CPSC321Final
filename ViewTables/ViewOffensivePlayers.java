@@ -4,6 +4,8 @@ package ViewTables;
 import java.io.*;
 import java.sql.*;  
 import java.util.Properties;
+
+import Filters.OPFilter;
 import Functions.*;
 
 public class ViewOffensivePlayers {
@@ -23,12 +25,14 @@ public class ViewOffensivePlayers {
 			String dab = "gheberling_DB";
 			String url = "jdbc:mysql://" + hst + "/" + dab;
 			Connection con = DriverManager.getConnection(url, usr, pwd);
-			
-			int Season = getSeason.getSeason();
+            
+            // get season and apply filters
+            int Season = getSeason.getSeason();
+            String Filters = OPFilter.OPFilter();
 
 			// create and execute query
-			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Offensive_Player WHERE Season = " + Season + " ORDER  BY Team_Name";
+            Statement stmt = con.createStatement();
+			String q = "SELECT * FROM Offensive_Player WHERE Season = " + Season + Filters + " ORDER  BY Team_Name";
 			ResultSet rs = stmt.executeQuery(q);
 			
 			// defines the strings that will be used

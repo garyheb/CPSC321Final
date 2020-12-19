@@ -30,23 +30,36 @@ public class UpdateDefense {
 
         // create and execute query
         Statement stmt = con.createStatement();
-        
-        // get defense player
-        System.out.print("Which defensive player would you like to update:");
-        String Player_Name = scanner.nextLine();
 
         //get season from function
-        System.out.println("For which season?");
-        int Season = getSeason.getSeason(); 
-        
+        int Season = getSeason.getSeason();  
+
         //get team name from function
         System.out.println("For which team?");
         String teamName = getTeam.getTeam();
 
+        //list the players so the user can decide which to update
+        System.out.println();
+        System.out.println("--- List of Defensive Players ---");
+        String q = "SELECT * FROM Defensive_Player WHERE Season = " + Season + " AND Team_Name = " + teamName;
+            ResultSet rs = stmt.executeQuery(q);
+            // print results
+            String Player_Name;
+            while(rs.next()) {
+                Player_Name = rs.getString("Player_Name");
+                System.out.println(
+                    "Player Name: " + Player_Name );
+            }
+        
+        // get defense player name
+        System.out.println();
+        System.out.println();
+        System.out.print("Which defensive player would you like to update:");
+        Player_Name = scanner.nextLine();       
+
         stmt = con.createStatement();
         String updateStats = updateWhichStats();
-        String q = "UPDATE Defensive_Player SET " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Player_Name = \"" + Player_Name + "\"" + " AND Team_Name = " + teamName;
-        System.out.println("Query = " + q);
+        q = "UPDATE Defensive_Player SET " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Player_Name = \"" + Player_Name + "\"" + " AND Team_Name = " + teamName;
         stmt.executeUpdate(q);
 
         //releases resources
@@ -163,7 +176,6 @@ public class UpdateDefense {
                 
                 String Birthday = year + "-" + monthString + "-" + dayString;
                 Update = "Birthday = \"" + Birthday + "\", ";
-                System.out.println("Update = " + Update);
                 break;
               case 2:
                 System.out.print("Please enter the jersey number: ");

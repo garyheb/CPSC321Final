@@ -39,7 +39,7 @@ public class getTeam {
             System.out.println("31: Tennessee Titans");
             System.out.println("32: Washington Football Team");           
             
-            System.out.print("Please enter the teams number that you wish to view:");
+            System.out.print("Please select desired team:");
             TeamInt     = getInt.getInt();
             Team_Name   = getTeam_Name(TeamInt);
         }

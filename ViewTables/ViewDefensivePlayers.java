@@ -4,6 +4,8 @@ package ViewTables;
 import java.io.*;
 import java.sql.*;  
 import java.util.Properties;
+
+import Filters.DPFilter;
 import Functions.*;
 
 public class ViewDefensivePlayers {
@@ -25,11 +27,12 @@ public class ViewDefensivePlayers {
 			Connection con = DriverManager.getConnection(url, usr, pwd);
 
             // get user input here
-			int Season = getSeason.getSeason();
+            int Season = getSeason.getSeason();
+            String Filter = DPFilter.DPFilter();
 
 			// create and execute query
 			Statement stmt = con.createStatement();
-			String q = "SELECT * FROM Defensive_Player WHERE Season = " + Season + " ORDER  BY Team_Name";
+			String q = "SELECT * FROM Defensive_Player WHERE Season = " + Season + Filter + " ORDER  BY Team_Name";
 			ResultSet rs = stmt.executeQuery(q);
 			
 			// defines the strings that will be used

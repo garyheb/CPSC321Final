@@ -35,7 +35,6 @@ public class ViewAllPlayers {
             String q =  "SELECT Player_Name, Jersey_Number, Birthday, Team_Name, Position, Season FROM Quarterback WHERE Season = "      + Season + " AND Team_Name = " + Team_Name +
                  " UNION SELECT Player_Name, Jersey_Number, Birthday, Team_Name, Position, Season FROM Offensive_Player WHERE Season = " + Season + " AND Team_Name = " + Team_Name + 
                  " UNION SELECT Player_Name, Jersey_Number, Birthday, Team_Name, Position, Season FROM Defensive_Player WHERE Season = " + Season + " AND Team_Name = " + Team_Name;
-            System.out.println(q);
             ResultSet rs = stmt.executeQuery(q);           
 			
 			// defines the strings that will be used

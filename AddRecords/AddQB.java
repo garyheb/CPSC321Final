@@ -25,7 +25,6 @@ public class AddQB {
         Connection con = DriverManager.getConnection(url, usr, pwd);
         
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Please choose the season:");
         int SeasonName        = getSeason.getSeason();
         String season = String.valueOf(SeasonName);
         String teamName       = getTeam.getTeam();
@@ -72,7 +71,7 @@ public class AddQB {
 
         // create and execute query
         Statement stmt = con.createStatement();
-        String q = "INSERT INTO Quarterback VALUES ('" + Player_Name + "', " + "\"" + birthday + "\", " + jerseyNumber + ", " + passingYards + ", " + rushingYards + ", " + sacks + ", " + interceptions  + ", " +  fumbles  + ", " +  passingTD  + ", " +  rushingTD  + ", " +  completionPerc  + ", " +  passAttempt  + ", " +  passesCompleted  + ", \"" +  position  + "\", " + season + ", " + teamName + ");";
+        String q = "INSERT INTO Quarterback VALUES ('" + Player_Name + "', " + "\"" + birthday + "\", " + jerseyNumber + ", " + passingYards + ", " + rushingYards + ", " + sacks + ", " + interceptions  + ", " +  fumbles  + ", " +  passingTD  + ", " +  rushingTD  + ", " +  completionPerc  + ", " +  passAttempt  + ", " +  passesCompleted  + ", \"" +  position  + "\", " + season + ", "  + teamName + ");";
         System.out.println(q);
         stmt.executeUpdate(q);
 

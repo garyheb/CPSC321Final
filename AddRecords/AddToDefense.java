@@ -42,7 +42,7 @@ public class AddToDefense {
 
 			// create and execute query
             Statement stmt = con.createStatement();
-            String q = "INSERT INTO Defensive_Player VALUES ('" + playerName + "', '" + birthday + "', " + jerseyNumber + ", " + touchdowns + "', " + rushingYards + "', " + sacks + "', " + tackles + "', " + interceptions + "', " + position + "', " + SeasonName + "', " + Team_Name + ");";
+            String q = "INSERT INTO Defensive_Player VALUES ('" + playerName + "', '" + birthday + "', " + jerseyNumber + " , " + touchdowns + " , " + rushingYards + " , " + sacks + " , " + tackles + " , " + interceptions + " , \"" + position + "\" , " + SeasonName + " , " + Team_Name + " );";
             stmt.executeUpdate(q);
 
 

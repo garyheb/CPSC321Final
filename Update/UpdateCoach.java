@@ -30,18 +30,32 @@ public class UpdateCoach {
 
         // create and execute query
         Statement stmt = con.createStatement();
-        
-        // get Team name from function
-        System.out.print("Which Coach would you like to update:");
-        String coachName = scanner.nextLine();
 
         //get season from function
-        System.out.println("For which season?");
-        int Season = getSeason.getSeason();        
+        int Season = getSeason.getSeason();  
+
+        //list the coaches so the user can decide which to update
+        System.out.println();
+        System.out.println("--- List of coaches ---");
+        String q = "SELECT * FROM Head_Coach WHERE Season = " + Season;
+            ResultSet rs = stmt.executeQuery(q);
+            String Coach_Name, Superbowl = "";
+            // print results
+            while(rs.next()) {
+                Coach_Name     = rs.getString("Coach_Name");
+                System.out.println(
+                    "Coach Name: " + Coach_Name );
+            }
+        
+        // get coaches name from function
+        System.out.println();
+        System.out.println();
+        System.out.print("Please type the first and last name of the coach you would like to update:");
+        String coachName = scanner.nextLine();      
 
         stmt = con.createStatement();
         String updateStats = updateWhichStats();
-        String q = "UPDATE Head_Coach SET " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Coach_Name = \"" + coachName + "\"";
+        q = "UPDATE Head_Coach SET " + updateStats.substring(0, updateStats.length()-2) + " WHERE Season = " + Season + " AND Coach_Name = \"" + coachName + "\"";
         stmt.executeUpdate(q);
 
         //releases resources
@@ -68,6 +82,7 @@ public class UpdateCoach {
             System.out.println("2. Superbowl Wins");
         }        
         System.out.println("3. Done Updating");
+        System.out.print("Please select stat to update:");
         int updateStat = getInt.getInt();
         if(updateStat == 1){
             stat1 = true;
