@@ -32,14 +32,14 @@ public class deleteOP {
         Statement stmt = con.createStatement();
         
         // get Team name from function
-        System.out.print("Which Offensive player would you like to update:");
+        System.out.print("Which Offensive player would you like to delete:");
         String Player_Name = scanner.nextLine();
 
         //get season from function
         int Season = getSeason.getSeason();        
 
         stmt = con.createStatement();
-        String q = "DELETE FROM Offenssive_Player WHERE Player_Name = " + Player_Name + " AND Season = " + Season;
+        String q = "DELETE FROM Offensive_Player WHERE Player_Name = \"" + Player_Name + "\" AND Season = " + Season;
         stmt.executeUpdate(q);
 
         //releases resources

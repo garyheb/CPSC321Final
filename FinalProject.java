@@ -1,6 +1,7 @@
 //imports
 import AddRecords.AddCoach;
 import AddRecords.AddQB;
+import AddRecords.AddToDefense;
 import Functions.getInt;
 import Update.*;
 import DeleteRecords.*;
@@ -87,7 +88,8 @@ class FinalProject{
 
 	// add to tables
 	public static void Option2()
-	{
+	{   
+		System.out.println("Add Quarterback, Defensive Player, and Add Coach are currently working, the rest are works in progress");
 		System.out.println("1. Add to Teams");
 		System.out.println("2. Add to Quarterbacks");
 		System.out.println("3. Add to Offensive Players");
@@ -213,7 +215,7 @@ class FinalProject{
 
 		else if(userInput == 4)
 		{
-			//add defense
+			AddToDefense.AddToDefense();
 			System.out.println();
 			mainMenu();
 		}

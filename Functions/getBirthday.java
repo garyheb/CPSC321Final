@@ -34,7 +34,6 @@ public class getBirthday {
             dayString = String.valueOf(day);
         }
         String birthday = year + "-" + monthString + "-" + dayString;
-        birthday = "Birthday = \"" + birthday + "\", ";
         return birthday;
     }
 }
